@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colour at Work - Pro Bono Coaching</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        background: #fdfdfd;
+        color: #333;
+      }
+      header {
+        background: linear-gradient(135deg, #5a3e85, #b499d4);
+        padding: 20px;
+        color: #fff;
+        text-align: center;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+      }
+      nav {
+        margin-top: 10px;
+      }
+      nav a {
+        color: #ffd966;
+        margin: 0 10px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      section {
+        padding: 60px 20px;
+        max-width: 1100px;
+        margin: auto;
+      }
+      .cta-btn {
+        background: #ffd966;
+        border: none;
+        padding: 12px 20px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 6px;
+        margin-top: 20px;
+      }
+      .about,
+      .coaching,
+      .podcast,
+      .reviews {
+        background: #f9f6fc;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        padding: 30px;
+      }
+      .calendar,
+      .form {
+        margin: 20px 0;
+      }
+      .calendar-intro {
+        margin-bottom: 15px;
+        color: #5a3e85;
+        font-weight: 500;
+      }
+      .calendar-widget {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(90, 62, 133, 0.1);
+      }
+      .calendar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .calendar-title {
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-transform: capitalize;
+      }
+      .calendar-nav {
+        background: transparent;
+        border: none;
+        color: #5a3e85;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 50%;
+        transition: background 0.2s ease;
+      }
+      .calendar-nav:hover,
+      .calendar-nav:focus {
+        background: rgba(90, 62, 133, 0.1);
+        outline: none;
+      }
+      .calendar-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 15px;
+        color: #7b6cae;
+        font-size: 0.9rem;
+      }
+      .legend-box {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        margin-right: 6px;
+        border-radius: 4px;
+        border: 1px solid #d8caef;
+      }
+      .legend-box.available {
+        background: #fff;
+      }
+      .legend-box.booked {
+        background: #5a3e85;
+      }
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+        margin-top: 15px;
+      }
+      .calendar-cell {
+        background: #fff;
+        border: 1px solid #e2d9f3;
+        border-radius: 8px;
+        padding: 10px 0;
+        text-align: center;
+        font-weight: 500;
+        color: #5a3e85;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .calendar-cell:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(90, 62, 133, 0.15);
+      }
+      .calendar-cell.booked {
+        background: #5a3e85;
+        color: #fff;
+        border-color: #5a3e85;
+        box-shadow: none;
+      }
+      .calendar-cell.inactive,
+      .calendar-cell.weekday {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        cursor: default;
+      }
+      .calendar-cell.weekday {
+        font-weight: 600;
+        color: #7b6cae;
+      }
+      .calendar-status {
+        margin-top: 20px;
+        font-weight: 500;
+        color: #5a3e85;
+      }
+      .calendar-status.warning {
+        color: #c7515a;
+      }
+      .calendar-reset {
+        margin-top: 15px;
+        background: #5a3e85;
+        color: #fff;
+        padding: 10px 18px;
+        font-size: 0.9rem;
+      }
+      .calendar-reset:hover {
+        background: #4a2f6f;
+      }
+      .form input,
+      .form textarea,
+      .form select {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+      .review-box {
+        margin-top: 20px;
+      }
+      .star {
+        font-size: 24px;
+        cursor: pointer;
+        color: #ccc;
+      }
+      .star.checked {
+        color: #ffd966;
+      }
+      footer {
+        background: #5a3e85;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Colour at Work</h1>
+      <p>Carreira, Identidade e Inclusão no Trabalho</p>
+      <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#coaching">Pro Bono</a>
+        <a href="#podcast">Podcast</a>
+        <a href="#reviews">Testemunhos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <section id="sobre" class="about">
+      <h2>Sobre Sofia</h2>
+      <p>
+        Sofia Medina Andrade é especialista em Talent Acquisition, com mais de
+        10 anos de experiência internacional em RH e Comunicação, tendo
+        trabalhado em empresas como Bosch, Carrier, EY e Doctors of the World. É
+        fundadora do podcast <strong>Colour at Work</strong>, um espaço de
+        reflexão sobre diversidade, inclusão e identidade no trabalho.
+      </p>
+    </section>
+
+    <section id="coaching" class="coaching">
+      <h2>Career Coaching (Pro Bono)</h2>
+      <p>
+        <strong>Para quem?</strong> Estudantes universitários ou recém-graduados
+        indicados por ONGs/associações.
+      </p>
+      <p>
+        <strong>O que inclui?</strong> Sessão de 30 min: revisão de CV (PT/EN),
+        mock interview, otimização de LinkedIn, plano “Primeiros 90 dias”.
+      </p>
+      <p>
+        <strong>Como funciona?</strong> Apenas 2 sessões por mês. Caso as vagas
+        estejam preenchidas, entra em lista de espera.
+      </p>
+
+      <div class="calendar">
+        <h3>Calendário</h3>
+        <p class="calendar-intro">
+          Escolha o dia preferido e bloqueie manualmente até 2 sessões por mês.
+          Quando as vagas estiverem completas, a página indica automaticamente a
+          lista de espera.
+        </p>
+        <div id="calendarApp" class="calendar-widget">
+          <div class="calendar-header">
+            <button
+              type="button"
+              class="calendar-nav"
+              id="prevMonth"
+              aria-label="Mês anterior"
+            >
+              ‹
+            </button>
+            <div class="calendar-title" id="calendarTitle"></div>
+            <button
+              type="button"
+              class="calendar-nav"
+              id="nextMonth"
+              aria-label="Próximo mês"
+            >
+              ›
+            </button>
+          </div>
+          <div class="calendar-legend">
+            <span><span class="legend-box available"></span>Disponível</span>
+            <span><span class="legend-box booked"></span>Reservado</span>
+          </div>
+          <div
+            class="calendar-grid"
+            id="calendarGrid"
+            role="grid"
+            aria-live="polite"
+          ></div>
+          <p class="calendar-status" id="calendarStatus"></p>
+          <button
+            type="button"
+            class="cta-btn calendar-reset"
+            id="resetBookings"
+          >
+            Limpar reservas do mês
+          </button>
+        </div>
+      </div>
+
+      <div class="form">
+        <h3>Formulário de inscrição</h3>
+        <form>
+          <input type="text" placeholder="Nome" required />
+          <input type="email" placeholder="Email" required />
+          <input type="text" placeholder="Universidade/Associação" required />
+          <input type="text" placeholder="Área de interesse" required />
+          <input type="url" placeholder="LinkedIn" />
+          <textarea placeholder="Mensagem"></textarea>
+          <select>
+            <option>Como descobriu a Sofia?</option>
+            <option>LinkedIn</option>
+            <option>Podcast</option>
+            <option>ONG/Associação</option>
+            <option>Outro</option>
+          </select>
+          <button type="submit" class="cta-btn">Reservar</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="podcast" class="podcast">
+      <h2>Podcast: Colour at Work</h2>
+      <p>
+        Um espaço mensal para refletir sobre diversidade, identidade e inclusão
+        no trabalho. Disponível em Português e Inglês.
+      </p>
+      <iframe
+        src="https://open.spotify.com/embed/show/5pT4e1fpUCGCAtHihy69Dv"
+        width="100%"
+        height="200"
+        frameborder="0"
+        allowtransparency="true"
+        allow="encrypted-media"
+      ></iframe>
+    </section>
+
+    <section id="reviews" class="reviews">
+      <h2>Testemunhos</h2>
+      <div class="review-box">
+        <span class="star" onclick="rate(1)">★</span>
+        <span class="star" onclick="rate(2)">★</span>
+        <span class="star" onclick="rate(3)">★</span>
+        <span class="star" onclick="rate(4)">★</span>
+        <span class="star" onclick="rate(5)">★</span>
+      </div>
+      <textarea placeholder="Deixe o seu testemunho..."></textarea>
+      <button class="cta-btn">Enviar</button>
+    </section>
+
+    <footer id="contacto">
+      <p>
+        Contacto:
+        <a href="mailto:sofia.medina.a@gmail.com">sofia.medina.a@gmail.com</a>
+      </p>
+      <p>© 2025 - Criado por Wanderson Coelho</p>
+    </footer>
+
+    <script>
+      const MAX_BOOKINGS_PER_MONTH = 2;
+      const STORAGE_KEY = "colourAtWorkBookings";
+      let currentMonthDate = new Date();
+      currentMonthDate.setDate(1);
+
+      const bookings = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+      const calendarTitle = document.getElementById("calendarTitle");
+      const calendarGrid = document.getElementById("calendarGrid");
+      const calendarStatus = document.getElementById("calendarStatus");
+      const prevMonthBtn = document.getElementById("prevMonth");
+      const nextMonthBtn = document.getElementById("nextMonth");
+      const resetBtn = document.getElementById("resetBookings");
+
+      function getMonthKey(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        return `${year}-${month}`;
+      }
+
+      function getMonthBookings(date) {
+        const key = getMonthKey(date);
+        return bookings[key] ? [...bookings[key]] : [];
+      }
+
+      function saveMonthBookings(date, days) {
+        const key = getMonthKey(date);
+        if (days.length) {
+          bookings[key] = days;
+        } else {
+          delete bookings[key];
+        }
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
+      }
+
+      function updateStatus() {
+        const monthBookings = getMonthBookings(currentMonthDate);
+        const remaining = MAX_BOOKINGS_PER_MONTH - monthBookings.length;
+        if (remaining > 0) {
+          calendarStatus.textContent = `Sessões disponíveis este mês: ${remaining} de ${MAX_BOOKINGS_PER_MONTH}.`;
+          calendarStatus.classList.remove("warning");
+        } else {
+          calendarStatus.textContent =
+            "Limite de sessões atingido. Utilize o formulário para entrar na lista de espera.";
+          calendarStatus.classList.add("warning");
+        }
+      }
+
+      function handleDayClick(event) {
+        const button = event.currentTarget;
+        const day = Number(button.dataset.day);
+        const monthBookings = new Set(getMonthBookings(currentMonthDate));
+
+        if (button.classList.contains("booked")) {
+          monthBookings.delete(day);
+          button.classList.remove("booked");
+          button.setAttribute("aria-pressed", "false");
+        } else {
+          if (monthBookings.size >= MAX_BOOKINGS_PER_MONTH) {
+            calendarStatus.textContent =
+              "Limite de sessões atingido. Libere uma data ou utilize o formulário para gerir a lista de espera.";
+            calendarStatus.classList.add("warning");
+            return;
+          }
+          monthBookings.add(day);
+          button.classList.add("booked");
+          button.setAttribute("aria-pressed", "true");
+        }
+
+        const updatedDays = Array.from(monthBookings).sort((a, b) => a - b);
+        saveMonthBookings(currentMonthDate, updatedDays);
+        updateStatus();
+      }
+
+      function renderCalendar() {
+        const locale = "pt-PT";
+        const monthFormatter = new Intl.DateTimeFormat(locale, {
+          month: "long",
+          year: "numeric",
+        });
+        calendarTitle.textContent = monthFormatter.format(currentMonthDate);
+
+        calendarGrid.innerHTML = "";
+        const dayNames = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+        dayNames.forEach((dayName) => {
+          const cell = document.createElement("div");
+          cell.textContent = dayName;
+          cell.className = "calendar-cell weekday";
+          cell.setAttribute("role", "columnheader");
+          calendarGrid.appendChild(cell);
+        });
+
+        const firstDay = new Date(
+          currentMonthDate.getFullYear(),
+          currentMonthDate.getMonth(),
+          1,
+        );
+        const daysInMonth = new Date(
+          currentMonthDate.getFullYear(),
+          currentMonthDate.getMonth() + 1,
+          0,
+        ).getDate();
+        const offset = (firstDay.getDay() + 6) % 7; // Ajusta para semana a começar na segunda-feira
+
+        for (let i = 0; i < offset; i += 1) {
+          const blank = document.createElement("div");
+          blank.className = "calendar-cell inactive";
+          blank.setAttribute("aria-hidden", "true");
+          calendarGrid.appendChild(blank);
+        }
+
+        const monthBookings = new Set(getMonthBookings(currentMonthDate));
+
+        for (let day = 1; day <= daysInMonth; day += 1) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "calendar-cell";
+          button.dataset.day = String(day);
+          button.textContent = day;
+          button.setAttribute("role", "gridcell");
+          button.addEventListener("click", handleDayClick);
+
+          const isBooked = monthBookings.has(day);
+          button.setAttribute("aria-pressed", isBooked ? "true" : "false");
+
+          if (isBooked) {
+            button.classList.add("booked");
+          }
+
+          calendarGrid.appendChild(button);
+        }
+
+        updateStatus();
+      }
+
+      function changeMonth(offset) {
+        currentMonthDate = new Date(
+          currentMonthDate.getFullYear(),
+          currentMonthDate.getMonth() + offset,
+          1,
+        );
+        renderCalendar();
+      }
+
+      prevMonthBtn.addEventListener("click", () => changeMonth(-1));
+      nextMonthBtn.addEventListener("click", () => changeMonth(1));
+      resetBtn.addEventListener("click", () => {
+        const confirmation = confirm(
+          "Tem a certeza de que pretende limpar todas as reservas deste mês?",
+        );
+        if (!confirmation) {
+          return;
+        }
+        saveMonthBookings(currentMonthDate, []);
+        renderCalendar();
+      });
+
+      renderCalendar();
+
+      function rate(stars) {
+        const allStars = document.querySelectorAll(".star");
+        allStars.forEach((s, i) => {
+          s.classList.toggle("checked", i < stars);
+        });
+      }
+
+      window.rate = rate;
+    </script>
+  </body>
+</html>
